@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" method="upgrade">
+	<name>plg_system_cropresize</name>
+	<author>Mirosław Majka</author>
+	<creationDate>2024-07</creationDate>
+	<copyright>Copyright (C) 2024 Mirosław Majka. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>mix@proask.pl</authorEmail>
+	<authorUrl>proask.pl</authorUrl>
+	<version>1.0</version>
+	<description>PLG_SYSTEM_CROPRESIZE_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\System\CropResize</namespace>
+	<files>
+		<folder>forms</folder>
+		<folder plugin="cropresize">services</folder>
+		<folder>src</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/plg_system_cropresize.ini</language>
+		<language tag="en-GB">language/en-GB/plg_system_cropresize.sys.ini</language>
+		<language tag="pl-PL">language/pl-PL/plg_system_cropresize.ini</language>
+		<language tag="pl-PL">language/pl-PL/plg_system_cropresize.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="create_webp_format"
+					type="radio"
+					label="PLG_SYSTEM_CROPRESIZE_CREATE_WEBP_FORMAT_LABEL"
+					description="PLG_SYSTEM_CROPRESIZE_CREATE_WEBP_FORMAT_DESC"
+					layout="joomla.form.field.radio.switcher"
+					default="1"
+					filter="integer"
+					>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
+					name="crop_images"
+					type="radio"
+					label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_LABEL"
+					layout="joomla.form.field.radio.switcher"
+					default="0"
+					filter="integer"
+					>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
+					name="crop_images_width"
+					type="number"
+					label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_WIDTH_LABEL"
+					default="640"
+					hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
+					filter="integer"
+					min="1"
+					validate="number"
+					showon="crop_images:1"
+				/>
+
+				<field
+					name="crop_images_height"
+					type="number"
+					label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_HEIGHT_LABEL"
+					default="480"
+					hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
+					filter="integer"
+					min="1"
+					validate="number"
+					showon="crop_images:1"
+				/>
+
+				<field
+					name="watermark"
+					type="radio"
+					label="PLG_SYSTEM_CROPRESIZE_WATERMARK_LABEL"
+					layout="joomla.form.field.radio.switcher"
+					default="0"
+					filter="integer"
+					>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
+					name="watermark_image"
+					type="media"
+					label="PLG_SYSTEM_CROPRESIZE_WATERMARK_IMAGE_LABEL"
+					showon="watermark:1"
+				/>
+
+				<field
+					name="watermark_opacity"
+					type="number"
+					label="PLG_SYSTEM_CROPRESIZE_WATERMARK_OPACITY_LABEL"
+					default="50"
+					filter="integer"
+					min="1"
+					validate="number"
+					showon="watermark:1"
+				/>
+
+				<field
+					name="watermark_mb"
+					type="number"
+					label="PLG_SYSTEM_CROPRESIZE_WATERMARK_MB_LABEL"
+					hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
+					filter="integer"
+					min="0"
+					validate="number"
+					size="10"
+					showon="watermark:1"
+				/>
+
+				<field
+					name="watermark_me"
+					type="number"
+					label="PLG_SYSTEM_CROPRESIZE_WATERMARK_MR_LABEL"
+					hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
+					filter="integer"
+					min="0"
+					validate="number"
+					size="10"
+					showon="watermark:1"
+				/>
+
+				<field
+					name="crop_images_quality"
+					type="number"
+					label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_QUALITY_LABEL"
+					hint="PLG_SYSTEM_CROPRESIZE_HINT_PERCENT"
+					filter="integer"
+					min="15"
+					validate="number"
+					showon="create_webp_format:1[OR]crop_images:1[OR]watermark:1"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
