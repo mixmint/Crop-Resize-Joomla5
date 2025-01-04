@@ -12,8 +12,6 @@ namespace Joomla\Plugin\System\CropResize\Extension;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Categories\Categories;
 use Joomla\CMS\Categories\CategoryNode;
-use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\File;
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormHelper;
@@ -22,8 +20,6 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Uri\Uri;
 
 \defined('_JEXEC') or die;
-
-BaseDatabaseModel::addIncludePath(JPATH_SITE . '/components/com_content/src/Model', 'ArticlesModel');
 
 final class CropResize extends CMSPlugin
 {
@@ -165,7 +161,7 @@ final class CropResize extends CMSPlugin
 		$image    = sprintf('%s/%s_%s.%s', $cache, $itemId, $filename, $fileExtension);
 		$quality  = ($imageType == IMAGETYPE_PNG ? ['quality' => round($this->params->get('crop_images_quality') / 10)] : ($imageType == IMAGETYPE_GIF ? [] : ['quality' => $this->params->get('crop_images_quality')]));
 
-		if (!File::exists($filePath)) {
+		if (!\file_exists($filePath)) {
 			if ($this->params->get('crop_images')) {
 				$width          = $this->params->get('crop_images_width');
 				$height         = $this->params->get('crop_images_height');
