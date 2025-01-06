@@ -135,9 +135,7 @@ final class CropResize extends CMSPlugin
 
         $cache = sprintf('cache/%s', $this->view);
 
-        if (!Folder::exists(sprintf('%s/%s', JPATH_BASE, $cache))) {
-            Folder::create(sprintf('%s/%s', JPATH_BASE, $cache));
-        }
+        Folder::create(sprintf('%s/%s', JPATH_BASE, $cache));
 
         if (str_contains($image, '#')) {
             $lazy  = explode('#', $image);
