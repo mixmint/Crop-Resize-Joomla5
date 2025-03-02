@@ -7,7 +7,7 @@
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>mix@proask.pl</authorEmail>
     <authorUrl>proask.pl</authorUrl>
-    <version>1.21</version>
+    <version>1.2.1</version>
     <description>PLG_SYSTEM_CROPRESIZE_DESCRIPTION</description>
     <namespace path="src">Joomla\Plugin\System\CropResize</namespace>
     <files>
