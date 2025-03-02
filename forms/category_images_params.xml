@@ -58,6 +58,7 @@
                 name="crop_override"
                 type="radio"
                 label="PLG_SYSTEM_CROPRESIZE_CROP_BLOG_ITEMS_IMAGES_OVERRIDE_LABEL"
+                description="PLG_SYSTEM_CROPRESIZE_CROP_BLOG_ITEMS_IMAGES_OVERRIDE_DESC"
                 layout="joomla.form.field.radio.switcher"
                 default="1"
                 filter="integer"
