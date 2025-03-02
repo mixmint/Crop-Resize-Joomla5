@@ -23,8 +23,6 @@ final class CropResize extends CMSPlugin
 {
     protected $app;
     protected $doc;
-    private $option;
-    private $view;
     private $category;
     private $menu;
     private $tag;
