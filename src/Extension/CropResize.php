@@ -22,11 +22,8 @@ use Joomla\Filesystem\Folder;
 final class CropResize extends CMSPlugin
 {
     protected $app;
-    protected $doc;
     private $category;
     private $menu;
-    private $tag;
-
     private $images = null;
 
     private $names  = [
