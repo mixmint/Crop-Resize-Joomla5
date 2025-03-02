@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-    <fields name="images">
-        <fieldset name="cropresize_params" label="PLG_SYSTEM_CROPRESIZE_ARTICLE">
+    <fields name="params">
+        <fieldset name="cropresize_tagmenu_params" label="PLG_SYSTEM_CROPRESIZE_TAGMENU">
             <field
                 name="note_introimage_off"
                 type="note"

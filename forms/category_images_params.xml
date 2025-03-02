@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fields name="params">
-		<fieldset name="cropresize_blog_params" label="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS">
-			<field
-				name="note_blog_items_off"
-				type="note"
-				class="alert alert-info mt-3 w-100"
-				label="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_DISABLED_NOTE_LABEL"
-				description="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_DISABLED_NOTE_DESC"
-				showon="crop_introimage:0"
-			/>
+    <fields name="params">
+        <fieldset name="cropresize_blog_params" label="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS">
+            <field
+                name="note_blog_items_off"
+                type="note"
+                class="alert alert-info mt-3 w-100"
+                label="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_DISABLED_NOTE_LABEL"
+                description="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_DISABLED_NOTE_DESC"
+                showon="crop_introimage:0"
+            />
 
-			<field
-				name="note_blog_items_on"
-				type="note"
-				class="alert alert-success mt-3 w-100"
-				label="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_ENABLED_NOTE_LABEL"
-				description="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_ENABLED_NOTE_DESC"
-				showon="crop_introimage:1"
-			/>
+            <field
+                name="note_blog_items_on"
+                type="note"
+                class="alert alert-success mt-3 w-100"
+                label="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_ENABLED_NOTE_LABEL"
+                description="PLG_SYSTEM_CROPRESIZE_BLOG_ITEMS_OVERRIDE_ENABLED_NOTE_DESC"
+                showon="crop_introimage:1"
+            />
 
-			<field
-				name="crop_introimage"
-				type="radio"
-				label="PLG_SYSTEM_CROPRESIZE_CROP_BLOG_ITEMS_IMAGES_LABEL"
-				layout="joomla.form.field.radio.switcher"
-				default="0"
-				filter="integer"
-			>
-				<option value="0">JNO</option>
-				<option value="1">JYES</option>
-			</field>
+            <field
+                name="crop_introimage"
+                type="radio"
+                label="PLG_SYSTEM_CROPRESIZE_CROP_BLOG_ITEMS_IMAGES_LABEL"
+                layout="joomla.form.field.radio.switcher"
+                default="0"
+                filter="integer"
+            >
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
 
-			<field
-				name="crop_introimage_width"
-				type="number"
-				label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_WIDTH_LABEL"
-				hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
-				filter="integer"
-				min="1"
-				validate="number"
-				showon="crop_introimage:1"
-			/>
+            <field
+                name="crop_introimage_width"
+                type="number"
+                label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_WIDTH_LABEL"
+                hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
+                filter="integer"
+                min="1"
+                validate="number"
+                showon="crop_introimage:1"
+            />
 
-			<field
-				name="crop_introimage_height"
-				type="number"
-				label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_HEIGHT_LABEL"
-				hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
-				filter="integer"
-				min="1"
-				validate="number"
-				showon="crop_introimage:1"
-			/>
+            <field
+                name="crop_introimage_height"
+                type="number"
+                label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_HEIGHT_LABEL"
+                hint="PLG_SYSTEM_CROPRESIZE_HINT_PX"
+                filter="integer"
+                min="1"
+                validate="number"
+                showon="crop_introimage:1"
+            />
 
-			<field
-				name="crop_override"
-				type="radio"
-				label="PLG_SYSTEM_CROPRESIZE_CROP_BLOG_ITEMS_IMAGES_OVERRIDE_LABEL"
-				layout="joomla.form.field.radio.switcher"
-				default="1"
-				filter="integer"
-				showon="crop_introimage:1"
-			>
-				<option value="0">JNO</option>
-				<option value="1">JYES</option>
-			</field>
-		</fieldset>
-	</fields>
+            <field
+                name="crop_override"
+                type="radio"
+                label="PLG_SYSTEM_CROPRESIZE_CROP_BLOG_ITEMS_IMAGES_OVERRIDE_LABEL"
+                layout="joomla.form.field.radio.switcher"
+                default="1"
+                filter="integer"
+                showon="crop_introimage:1"
+            >
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+        </fieldset>
+    </fields>
 </form>
