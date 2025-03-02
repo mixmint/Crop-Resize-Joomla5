@@ -14,7 +14,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Image\Image;
-use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\Filesystem\Folder;
 
 \defined('_JEXEC') or die;
