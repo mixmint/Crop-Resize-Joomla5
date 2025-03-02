@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 1.2
+ * @version 1.21
  * @package System.cropresize plugin
  * @author Mirosław Majka (mix@proask.pl)
  * @copyright (C) 2024 Mirosław Majka <mix@proask.pl>

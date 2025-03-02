@@ -1,6 +1,6 @@
 <?php
 /**
- * @version 1.2
+ * @version 1.21
  * @package System.cropresize plugin
  * @author Mirosław Majka (mix@proask.pl)
  * @copyright (C) 2024 Mirosław Majka <mix@proask.pl>
@@ -85,7 +85,7 @@ final class CropResize extends CMSPlugin
         return true;
     }
 
-    public function onBeforeRender()
+    public function onBeforeRender(): bool
     {
         if (
             !$this->app->isClient('site')
@@ -135,7 +135,7 @@ final class CropResize extends CMSPlugin
             }
 
             if (!empty($this->menu->get('crop_fullimage'))) {
-                $size = $this->setSize($this->menu->get('crop_introimage_width'), $this->menu->get('crop_introimage_height'));
+                $size = $this->setSize($this->menu->get('crop_fullimage_width'), $this->menu->get('crop_fullimage_height'));
             } elseif (!empty($this->images->crop_fullimage)) {
                 $size = $this->setSize($this->images->crop_fullimage_width, $this->images->crop_fullimage_height);
             } else {
@@ -177,16 +177,18 @@ final class CropResize extends CMSPlugin
                     $this->category = $this->app->bootComponent('com_content')->getCategory(['published' => true, 'access' => false])->get($this->app->input->get('id'))->getParams();
                 }
 
-                if ((bool) $this->category->get('crop_introimage') && isset($row->id)) {
-                    $size = $this->setSize($this->category->get('crop_introimage_width'), $this->category->get('crop_introimage_height'));
-
-                    if (!(bool) $this->category->get('crop_override')) {
-                        $size = $this->setSize($this->images->crop_introimage_width, $this->images->crop_introimage_height);
-                    }
-
-                    $this->images->image_intro = $this->prepareImage($row->id, $this->images->image_intro, ['size' => $size]);
-                    $row->images               = json_encode($this->images);
+                if (!(bool) $this->category->get('crop_introimage') || !isset($row->id)) {
+                    break;
                 }
+
+                $size = $this->setSize($this->category->get('crop_introimage_width'), $this->category->get('crop_introimage_height'));
+
+                if (!(bool) $this->category->get('crop_override')) {
+                    $size = $this->setSize($this->images->crop_introimage_width, $this->images->crop_introimage_height);
+                }
+
+                $this->images->image_intro = $this->prepareImage($row->id, $this->images->image_intro, ['size' => $size]);
+                $row->images               = json_encode($this->images);
 
                 break;
 
@@ -195,54 +197,67 @@ final class CropResize extends CMSPlugin
                     $this->menu = $this->app->getMenu()->getActive()->getParams();
                 }
 
-                if (isset($row->content_item_id)) {
+                if (!isset($row->content_item_id)) {
+                    break;
+                }
+
+                if (!empty($this->menu->get('crop_introimage'))) {
+                    $size = $this->setSize($this->menu->get('crop_introimage_width'), $this->menu->get('crop_introimage_height'));
+                } elseif (!empty($this->images->crop_introimage)) {
+                    $size = $this->setSize($this->images->crop_introimage_width, $this->images->crop_introimage_height);
+                } else {
+                    $size = null;
+                }
+
+                if (!empty($this->menu->get('crop_introimage') || !empty($this->images->crop_introimage))) {
                     $this->images->image_intro = $this->prepareImage(
                         $row->content_item_id,
                         $this->images->image_intro,
-                        (bool) $this->menu->get('crop_introimage')
-                            ? ['size' => $this->setSize($this->menu->get('crop_introimage_width'), $this->menu->get('crop_introimage_height'))]
-                            : null
+                        ['size' => $size]
                     );
+                }
 
-                    if (!empty($this->menu->get('crop_fullimage'))) {
-                        $this->images->image_fulltext = $this->prepareImage(
-                            $row->content_item_id,
-                            $this->images->image_fulltext,
-                            [
-                                'size' => $this->setSize($this->menu->get('crop_fullimage_width'), $this->menu->get('crop_fullimage_width'))
-                            ]
-                        );
-                    }
+                if (!empty($this->menu->get('crop_fullimage'))) {
+                    $size = $this->setSize($this->menu->get('crop_fullimage_width'), $this->menu->get('crop_fullimage_height'));
+                } elseif (!empty($this->images->crop_fullimage)) {
+                    $size = $this->setSize($this->images->crop_fullimage_width, $this->images->crop_fullimage_height);
+                } else {
+                    $size = null;
+                }
+
+                if (!empty($this->menu->get('crop_fullimage'))) {
+                    $this->images->image_fulltext = $this->prepareImage(
+                        $row->content_item_id,
+                        $this->images->image_fulltext,
+                        ['size' => $size]
+                    );
                 }
 
                 if (!empty($this->menu->get('crop_introimage')) || !empty($this->menu->get('crop_fullimage'))) {
                     $row->core_images = json_encode($this->images);
                 }
 
-
                 break;
 
             case 'com_content.article':
-                if (isset($row->id)) {
-                    if (!empty($this->images->crop_introimage)) {
-                        $this->images->image_intro = $this->prepareImage(
-                            $row->id,
-                            $this->images->image_intro,
-                            [
-                                'size' => $this->setSize($this->images->crop_introimage_width, $this->images->crop_introimage_height)
-                            ]
-                        );
-                    }
+                if (!isset($row->id)) {
+                    break;
+                }
 
-                    if (!empty($this->images->crop_fullimage)) {
-                        $this->images->image_fulltext = $this->prepareImage(
-                            $row->id,
-                            $this->images->image_fulltext,
-                            [
-                                'size' => $this->setSize($this->images->crop_fullimage_width, $this->images->crop_fullimage_height)
-                            ]
-                        );
-                    }
+                if (!empty($this->images->crop_introimage)) {
+                    $this->images->image_intro = $this->prepareImage(
+                        $row->id,
+                        $this->images->image_intro,
+                        ['size' => $this->setSize($this->images->crop_introimage_width, $this->images->crop_introimage_height)]
+                    );
+                }
+
+                if (!empty($this->images->crop_fullimage)) {
+                    $this->images->image_fulltext = $this->prepareImage(
+                        $row->id,
+                        $this->images->image_fulltext,
+                        ['size' => $this->setSize($this->images->crop_fullimage_width, $this->images->crop_fullimage_height)]
+                    );
                 }
 
                 if (!empty($this->images->crop_introimage) || !empty($this->images->crop_fullimage)) {
@@ -254,7 +269,6 @@ final class CropResize extends CMSPlugin
 
         return true;
     }
-
 
     private function setSize(?int $width, ?int $height): ?string
     {
