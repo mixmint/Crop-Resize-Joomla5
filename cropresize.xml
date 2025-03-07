@@ -7,7 +7,7 @@
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>mix@proask.pl</authorEmail>
     <authorUrl>proask.pl</authorUrl>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <description>PLG_SYSTEM_CROPRESIZE_DESCRIPTION</description>
     <namespace path="src">Joomla\Plugin\System\CropResize</namespace>
     <files>
@@ -24,6 +24,14 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
+                <field
+                    name="note_buymeacoffee"
+                    type="note"
+                    class="my-3 w-100"
+                    label="PLG_SYSTEM_CROPRESIZE_BUYMEACOFFEE_NOTE_LABEL"
+                    description="PLG_SYSTEM_CROPRESIZE_BUYMEACOFFEE_NOTE_DESC"
+                />
+
                 <field
                     name="create_webp_format"
                     type="radio"
