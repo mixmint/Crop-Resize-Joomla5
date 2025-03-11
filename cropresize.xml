@@ -7,9 +7,12 @@
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>mix@proask.pl</authorEmail>
     <authorUrl>proask.pl</authorUrl>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <description>PLG_SYSTEM_CROPRESIZE_DESCRIPTION</description>
     <namespace path="src">Joomla\Plugin\System\CropResize</namespace>
+    <updateservers>
+        <server type="extension" priority="1" name="Crop and Resize - cropping illustrations in Joomla!">https://proask.pl/updates/extensions.xml</server>
+    </updateservers>
     <files>
         <folder>forms</folder>
         <folder plugin="cropresize">services</folder>
