@@ -144,6 +144,7 @@
                     label="PLG_SYSTEM_CROPRESIZE_CROP_IMAGES_QUALITY_LABEL"
                     hint="PLG_SYSTEM_CROPRESIZE_HINT_PERCENT"
                     filter="integer"
+                    default="80"
                     min="15"
                     validate="number"
                     showon="create_webp_format:1[OR]crop_images:1[OR]watermark:1"

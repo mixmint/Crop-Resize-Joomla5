@@ -313,10 +313,10 @@ final class CropResize extends CMSPlugin
         $filePath = sprintf('%s/%s/%s_%s.%s', JPATH_BASE, $cache, $itemId, $filename, $fileExtension);
         $image    = sprintf('%s/%s_%s.%s', $cache, $itemId, $filename, $fileExtension);
         $quality  = ($imageType == IMAGETYPE_PNG
-            ? ['quality' => round($this->params->get('crop_images_quality') / 10)]
+            ? ['quality' => round($this->params->get('crop_images_quality', 80) / 10)]
             : ($imageType == IMAGETYPE_GIF
                 ? []
-                : ['quality' => $this->params->get('crop_images_quality')]
+                : ['quality' => $this->params->get('crop_images_quality', 80)]
             )
         );
 
